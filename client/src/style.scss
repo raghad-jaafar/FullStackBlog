@@ -1,0 +1,404 @@
+$lightGreen: #b9e7e7;
+
+.app{
+display:flex;
+justify-content:center;
+  
+.star-rating {
+    display: flex; /* Ensure stars are displayed in a row */
+    gap: 5px; /* Space between stars */
+  }
+  
+  .star {
+    font-size: 30px; /* Increase star size (adjust as needed) */
+    transition: transform 0.2s ease; /* Smooth transition for hover effect */
+  }
+  
+  .star:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+  }
+  
+    .container{
+        width:1024px;
+
+
+        .link{
+            text-decoration: none;
+            color:inherit;
+        }
+        //Login and Register
+
+        .auth{
+
+            display: flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: center;
+            height: 100vh;
+            background-color: $lightGreen;
+        
+        h1{
+            font-size: 20px;
+            color: teal;
+            margin-bottom: 20px;
+
+        }
+        form{
+            display:flex;
+            flex-direction: column;
+            padding:50px;
+            background-color:white;
+            width:200px;
+            gap: 20px;
+
+            input{
+                padding:10px;
+                border:none;
+                border-bottom: 1px solid gray;
+            }
+            button{
+                padding:10px;
+                 border:none;
+                 background-color: teal;
+                 cursor:pointer;
+                 color:white;
+            }
+            p{
+                font-size:12px;
+                color:red;
+                text-align: center;
+            }
+            span{
+                font-size: 12px;
+                text-align: center;
+            }
+        }
+    }
+
+
+//NEVBAR
+
+.nevbar{
+    .container{
+        padding:10px 0px;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        .logo{
+            img{
+                width:120px;
+            }
+        }
+        .links{
+            display:flex;
+            align-items: center;
+            gap: 10px;
+         h6{
+            font-style:16px;
+            font-weight: 300;
+        }
+    
+        span{
+            cursor:pointer;
+        }
+        .write{
+            background-color: $lightGreen;
+            width:50px;
+            height:50px;
+            border-radius: 50%;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+            border:1px solid white;
+        
+            &:hover{
+               
+                color:teal;
+                background-color: white;
+                border:1px solid teal;
+            }
+        }
+    }
+}
+}
+
+//FOOTER
+footer{
+    margin-top: 100px;
+    padding:20px;
+    background-color: $lightGreen;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-style: 12px;
+    img{
+        height: 50px;;
+    }
+}
+
+//HOME
+.home{
+    .posts{
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        gap: 150px;
+    .post{
+        gap: 100px;
+        display: flex;
+
+        &:nth-child(2n+1){
+            flex-direction: row-reverse;
+        }
+
+
+        .img {
+            flex: 2;
+            position: relative;
+            display: flex;
+            justify-content: center; // Center the image horizontally
+            align-items: center; // Center the image vertically
+            height: 400px; // Set a fixed height for the container
+            margin-top: 20px; // Add some margin from the top of the post
+          
+            &::before {
+              content: "";
+              width: 100%; // Cover the entire width
+              height: 120%; // Slightly taller to ensure it doesn't cut off
+              background-color: $lightGreen; // Light green background
+              position: absolute;
+              top: 0; // Align it to the top
+              left: 0; // Align it to the left
+              z-index: -1; // Behind the image
+              border-radius: 8px; // Optional: rounded corners
+              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Optional: shadow effect for depth
+              transition: height 0.3s ease; // Smooth transition for height
+            }
+          
+            img {
+              max-width: 80%; // Limit width for spacing
+              max-height: 100%; // Set max height to fill the container
+              object-fit: cover; // Maintain aspect ratio
+              border-radius: 8px; // Slightly rounded corners
+              z-index: 1; // Ensure image is on top
+              transition: transform 0.3s ease; // Smooth transition effect on hover
+          
+              &:hover {
+                transform: scale(1.1); // Slightly scale up on hover
+              }
+            
+          }
+          
+          // Additional style for centering the post content
+          .post {
+            display: flex;
+            flex-direction: column; // Stack the content vertically
+            align-items: center; // Center-align the entire post
+            gap: 20px; // Space between the content
+          }
+          
+    
+    }
+
+        .content{
+            flex:3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            h1{
+                font-style: 48px;
+            }
+            p{
+                font-size: 18px;
+            }
+            button{
+                width:max-content;
+                padding: 10px 20px;
+                border: none;
+                cursor: pointer;
+                background-color: white;
+                border: 1px solid teal;
+                color: teal;
+
+                &:hover{
+                    border: 1px solid white;
+                    background-color: $lightGreen;
+                    color: black;
+                }
+
+            }
+            }
+           }
+         }
+      }
+
+      //SINGLE
+      .single{
+        display:flex;
+        padding: 20px; /* Add padding to the entire single post section */
+        gap: 50px;
+        .content{
+            flex:5;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 20px; /* Add some margin above the content */
+            img{
+                width: 100%;
+                height: 400px; /* Increased height for better visibility */
+                object-fit: contain; /* Change to contain to fit the entire image */
+            }
+            .user{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                img{
+                    width: 50px; /* Adjusted user image size */
+                    height: 50px;
+                    border-radius: 50%;
+                    object-fit: cover; /* Keep the user image circular */
+
+                }
+            }
+        }
+        .edit{
+            display: flex;
+            gap: 5px;
+            img{
+                width: 20px;
+                height: 20px;
+                cursor:pointer;
+            }
+             h1{
+            font-size: 42px;
+            color:#333;
+
+            }
+            p{
+            text-align: justify;
+            line-height: 30px;
+            }
+        }
+
+       
+        .menu{
+            flex:2;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            h1{
+              font-size: 20px;
+              color: #555; 
+            }
+            .post{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                img{
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+                h2{
+                    color: #555; 
+                }
+                button{
+                    width:max-content;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    background-color: white;
+                    border: 1px solid teal;
+                    color: teal;
+    
+                    &:hover{
+                        border: 1px solid white;
+                        background-color: $lightGreen;
+                        color: black;
+                    }
+                }
+            }
+        }
+
+      }
+
+      ///WRITER
+      .add{
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+
+        .content{
+            flex:5;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            input{
+                padding: 10px;
+                border: 1px solid lightgray;
+            }
+            .editorContainer{
+            height: 300px;
+            overflow: scroll;
+            border: 1px solid lightgrey;
+            .editor{
+                height: 100%;
+                border: none;
+            }
+            }
+        }
+        .menu{
+            flex:2;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .item{
+                border: 1px solid lightgray;
+                padding: 10px;
+                flex:1;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                font-size: 12px;
+                color:#555;
+
+                h1{
+                    font-size: 20px;
+                }
+                .file{
+                    text-decoration: underline;
+                    cursor: pointer;
+
+                }
+                .buttons{
+                    display: flex;
+                    justify-content: space-between;
+                    :first-child{
+                        cursor: pointer;
+                        color: teal;
+                        background-color: white;
+                        border: 1px solid teal;
+                        padding: 3px 5px;
+                    }
+                    :last-child{
+                        cursor: pointer;
+                        color: white;
+                        background-color: teal;
+                        border: 1px solid white;
+                        padding: 3px 5px;
+                    }
+                }
+                .cat{
+                  display: flex;
+                  align-items: center;  
+                  gap:2px;
+                  color:teal;
+
+                }
+            }
+        }
+      }
+    }
+}
