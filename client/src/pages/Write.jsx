@@ -76,9 +76,10 @@ const handleClick= async (e)=>{
         <input 
           type="text"
           placeholder="Title" 
+          value={title} 
           onChange={e=>setTitle(e.target.value)}
         />
-        <StarRating rating={rating} onChange={setRating} />
+        <StarRating rating={rating}   onChange={setRating} />
         <div className="editorContainer">
       <ReactQuill 
        className="editor" 
