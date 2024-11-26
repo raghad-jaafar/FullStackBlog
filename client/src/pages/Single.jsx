@@ -11,6 +11,9 @@ import StarRating from '../components/StarRating';
 
 const Single = () => {
   const [post, setPost] = useState(null); // Initialize as null
+  const [comments, setComments] = useState([]); // Comments list
+  const [newComment, setNewComment] = useState(""); // New comment input
+  const [error, setError] = useState(null); // Error handling
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,12 +27,50 @@ const Single = () => {
       try {
         const res = await axios.get(`http://localhost:8800/api/posts/${postId}`);
         setPost(res.data);
+        const commentsRes = await axios.get(
+          `http://localhost:8800/api/posts/${postId}/comments`
+        );
+        setComments(commentsRes.data);
       } catch (err) {
         console.log(err);
+        setError("Failed to load the post or comments. Please try again later.");
       }
     };
     fetchData();
   }, [postId]);
+
+   // Handle like functionality
+   const handleLike = async () => {
+    try {
+      const res = await axios.post(
+        `http://localhost:8800/api/posts/${postId}/like`
+      );
+      setPost((prevPost) => ({
+        ...prevPost,
+        likes: res.data.likes,
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Handle new comment submission
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!newComment.trim()) return;
+
+    try {
+      const res = await axios.post(
+        `http://localhost:8800/api/posts/${postId}/comments`,
+        { text: newComment },
+        { withCredentials: true }
+      );
+      setComments((prevComments) => [...prevComments, res.data]);
+      setNewComment("");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleDelete = async () => {
     try {
@@ -71,6 +112,10 @@ const Single = () => {
             </div>
           )}
         </div>
+        <div className="engagement">
+          {/* Like button */}
+          <button onClick={handleLike}>👍 {post.likes || 0} Likes</button>
+        </div>
         <div className="star-rating"><StarRating rating={post.rating}  /> </div>
         <h1>{post.title}</h1>
         <p
@@ -78,6 +123,28 @@ const Single = () => {
             __html: DOMPurify.sanitize(post.desc),
           }}
         ></p>
+      </div>
+       {/* Comments Section */}
+       <div className="comments">
+        <h2>Comments</h2>
+        {comments.map((comment) => (
+          <div className="comment" key={comment.id}>
+            <strong>{comment.username}</strong>
+            <p>{comment.text}</p>
+            <span>{moment(comment.date).fromNow()}</span>
+          </div>
+        ))}
+
+        {currentUser && (
+          <form className="add-comment" onSubmit={handleCommentSubmit}>
+            <textarea
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <button type="submit">Submit</button>
+          </form>
+        )}
       </div>
       <Menu cat={post.cat} />
     </div>

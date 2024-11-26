@@ -21,6 +21,19 @@ import StarRating from '../components/StarRating';
     fetchData();
   },[cat]);
 
+  const handleLike = async (postId) => {
+    try {
+      const res = await axios.post(`http://localhost:8800/api/posts/${postId}/like`);
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, likes: res.data.likes } : post
+        )
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
   //  const posts = [
   //   {
   //     id: 1,
@@ -66,6 +79,16 @@ import StarRating from '../components/StarRating';
            </Link> 
            <StarRating rating={post.rating} />
            <p>{getText(post.desc)}</p>
+            <div className='engagement'>
+              {/* like button */}
+              <button onClick={()=> handleLike(post.id)}>
+                👍 {post.likes || 0} Likes
+              </button>
+               {/* comment section*/}
+               <Link t0={`/post/${post.id}#comments`} className='comments-link'>
+               💬 {post.commentCount || 0} Comments
+               </Link>
+            </div>
            <button>Read More</button>
              </div> 
             </div>

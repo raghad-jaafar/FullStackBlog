@@ -3,10 +3,7 @@ import React from 'react';
 const StarRating = ({ rating, onChange }) => {
   const stars = Array(5).fill(0); // Create an array of 5 elements for the stars
 
-  // Function to handle clicking on a star
-  const handleRating = (index) => {
-    onChange(index + 1); // Set rating based on the index of the clicked star
-  };
+ 
 
   return (
     <div className="star-rating" role="radiogroup" aria-label="Star Rating">
@@ -15,8 +12,8 @@ const StarRating = ({ rating, onChange }) => {
           key={index}
           className={index < rating ? 'star filled' : 'star'}
           onClick={() => handleRating(index)} // Update rating on click
-          onMouseEnter={() => onChange(index + 1)} // Preview rating on hover
-          onMouseLeave={() => onChange(rating)} // Reset to current rating on mouse leave
+          onMouseEnter={() => setHoverRating(index + (steps === 0.5 ? 0.5 : 1))}
+          onMouseLeave={() => setHoverRating(0)}
           style={{
             cursor: 'pointer',
             color: index < rating ? 'gold' : 'gray',
