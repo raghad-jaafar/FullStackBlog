@@ -1,16 +1,25 @@
 import {db} from "../db.js";
 import jwt from "jsonwebtoken";
 
-export const getPosts=(req,res)=>{
-   const q= req.query.cat 
-   ?"SELECT * FROM posts where cat=?" : 
-   "SELECT * FROM posts";
-   db.query(q, [req.query.cat], (err,data)=>{
-    if(err) return res.status(500).send(err);
-    
+export const getPosts = (req, res) => {
+  const q = req.query.cat
+    ? `SELECT p.*, 
+              (SELECT COUNT(*) FROM likes WHERE post_id = p.id) AS likeCount,
+              (SELECT COUNT(*) FROM comments WHERE post_id = p.id) AS commentCount
+        FROM posts p WHERE p.cat = ?`
+    : `SELECT p.*, 
+              (SELECT COUNT(*) FROM likes WHERE post_id = p.id) AS likeCount,
+              (SELECT COUNT(*) FROM comments WHERE post_id = p.id) AS commentCount
+        FROM posts p`;
+
+  db.query(q, [req.query.cat], (err, data) => {
+    if (err) return res.status(500).send(err);
+
     return res.status(200).json(data);
-});
+  });
 };
+
+  
 export const getPost=(req,res)=>{
     const q = "SELECT p.id, u.username, p.title, p.desc, p.img, u.img AS userImg, p.cat, p.rating, p.date FROM blog.users u JOIN blog.posts p ON u.id = p.uid WHERE p.id = ?";
   

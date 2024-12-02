@@ -21,7 +21,7 @@ const navigate=useNavigate()
 
     const formData=new FormData()
     formData.append("file", file)
-    console.log('File to upload:', file); // Debug log
+ 
 
     const res = await axios.post("http://localhost:8800/api/upload", formData, {
       withCredentials: true, // Include credentials in the request
