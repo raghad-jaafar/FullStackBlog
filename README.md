@@ -5,9 +5,15 @@ and star ratings. Integrated with the **NYT Books API** to fetch top-selling boo
 
 ## Features
 - **User Authentication**: Secure login and session management.
+- ![Screenshot 2025-02-04 135242](https://github.com/user-attachments/assets/d725a40c-175b-4c45-b1ba-cf7523d1c2f1)
+
 - **Book Reviews**: Create, read, update, and delete reviews.
+- ![Screenshot 2025-02-04 135301](https://github.com/user-attachments/assets/64354da9-cba5-449a-a49c-56913077ffe3)
+
 - **Interactions**: Comment, like, and rate reviews.
 - **Top-Selling Books**: Fetch and display top-selling books from the NYT Books API.
+- ![Screenshot 2025-02-04 135205](https://github.com/user-attachments/assets/c485a87b-8bd8-4695-ba5b-3334fbe4ebbd)
+
 - **Responsive Design**: Built with React and styled-components.
 - **Backend**: Powered by Node.js and MySQL.
 
