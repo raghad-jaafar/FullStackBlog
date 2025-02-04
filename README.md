@@ -1,5 +1,7 @@
 LitHub is a blog platform for sharing and discussing book reviews. It features a responsive UI, secure authentication, and interactive elements like comments, likes, 
 and star ratings. Integrated with the **NYT Books API** to fetch top-selling books.
+![Screenshot 2025-02-04 135232](https://github.com/user-attachments/assets/70a0b705-41ed-468d-98e3-65042bc76630)
+
 
 ## Features
 - **User Authentication**: Secure login and session management.
